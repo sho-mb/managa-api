@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Manga } from '../entity/manga.entity';
-// import { CreateMangaDto } from '../requests/create-manga.dto';
 import { MangaRepository } from '../manga.repository';
 import { CreateMangaDto } from '../requests/create-manga.dto';
 
