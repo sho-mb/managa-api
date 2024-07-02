@@ -7,7 +7,7 @@ import {
   IsUrl,
   Length,
 } from 'class-validator';
-import { CreateGenresDto } from './create-genres.dto';
+import { CreateGenresDto } from '../../genres/requests/create-genres.dto';
 
 export class CreateMangaDto {
   @ApiProperty()

@@ -1,5 +1,11 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Genres } from './genres.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Genres } from '../../genres/entity/genres.entity';
 
 @Entity()
 export class Manga {
@@ -21,9 +27,7 @@ export class Manga {
   @Column()
   urlOfWeb: string;
 
-  @OneToMany(() => Genres, (genres) => genres.manga, {
-    cascade: true,
-    onDelete: 'CASCADE',
-  })
+  @ManyToMany(() => Genres, (genres) => genres.manga)
+  @JoinTable()
   genres: Genres[];
 }
