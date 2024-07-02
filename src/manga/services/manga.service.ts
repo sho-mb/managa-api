@@ -1,22 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Inject, Injectable } from '@nestjs/common';
 import { Manga } from '../entity/manga.entity';
-import { Repository } from 'typeorm';
+// import { CreateMangaDto } from '../requests/create-manga.dto';
+import { MangaRepository } from '../manga.repository';
 import { CreateMangaDto } from '../requests/create-manga.dto';
 
 @Injectable()
 export class MangaService {
   constructor(
-    @InjectRepository(Manga)
-    private mangasRepository: Repository<Manga>,
+    @Inject(MangaRepository) private readonly mangaRepository: MangaRepository,
   ) {}
 
   async findAll(): Promise<Manga[]> {
-    return this.mangasRepository.find();
+    return this.mangaRepository.findAllWithGenres();
   }
 
   async create(manga: CreateMangaDto): Promise<Manga> {
-    const createManga = this.mangasRepository.create(manga);
-    return this.mangasRepository.save(createManga);
+    return this.mangaRepository.createNewManga(manga);
   }
 }

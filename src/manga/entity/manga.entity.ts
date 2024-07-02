@@ -7,7 +7,7 @@ export class Manga {
   id: number;
 
   @Column()
-  managaName: string;
+  mangaName: string;
 
   @Column()
   author: string;

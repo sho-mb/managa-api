@@ -1,19 +1,20 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  IsArray,
   IsNotEmpty,
   IsOptional,
   IsString,
   IsUrl,
   Length,
 } from 'class-validator';
-import { Genres } from '../entity/genres.entity';
+import { CreateGenresDto } from './create-genres.dto';
 
 export class CreateMangaDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
   @Length(1, 30)
-  managaName!: string;
+  mangaName!: string;
 
   @ApiProperty()
   @IsString()
@@ -38,7 +39,8 @@ export class CreateMangaDto {
   @IsOptional()
   urlOfWeb!: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: [CreateGenresDto] })
   @IsNotEmpty()
-  genres!: Genres[];
+  @IsArray()
+  genres!: CreateGenresDto[];
 }

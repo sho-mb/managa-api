@@ -9,11 +9,11 @@ export class MangaController {
 
   @Get()
   async findAll(): Promise<Manga[]> {
-    return this.mangaService.findAll();
+    return await this.mangaService.findAll();
   }
 
   @Post()
   async createManga(@Body() createMangaDto: CreateMangaDto): Promise<void> {
-    this.mangaService.create(createMangaDto);
+    await this.mangaService.create(createMangaDto);
   }
 }
