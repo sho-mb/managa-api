@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { MangaService } from './services/manga.service';
 import { Manga } from './entity/manga.entity';
 import { CreateMangaDto } from './requests/create-manga.dto';
@@ -13,7 +20,13 @@ export class MangaController {
   }
 
   @Post()
-  async createManga(@Body() createMangaDto: CreateMangaDto): Promise<void> {
-    await this.mangaService.create(createMangaDto);
+  async createManga(
+    @Body() createMangaDto: CreateMangaDto,
+  ): Promise<void | Error> {
+    try {
+      await this.mangaService.create(createMangaDto);
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
+    }
   }
 }

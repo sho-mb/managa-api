@@ -5,6 +5,7 @@ import { MangaModule } from './manga/manga.module';
 import { LibsModule } from 'libs/modules/libs.modules';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import applicationConfig from 'config/application';
+import { GenresModule } from './genres/genres.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import applicationConfig from 'config/application';
     }),
     LibsModule,
     MangaModule,
+    GenresModule,
   ],
   controllers: [AppController],
   providers: [

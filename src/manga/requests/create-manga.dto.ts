@@ -4,10 +4,9 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
-  IsUrl,
   Length,
 } from 'class-validator';
-import { CreateGenresDto } from './create-genres.dto';
+import { CreateGenresDto } from '../../genres/requests/create-genres.dto';
 
 export class CreateMangaDto {
   @ApiProperty()
@@ -24,7 +23,6 @@ export class CreateMangaDto {
 
   @ApiProperty()
   @IsString()
-  @IsUrl()
   @IsOptional()
   topViewUrl!: string;
 
@@ -35,7 +33,6 @@ export class CreateMangaDto {
 
   @ApiProperty()
   @IsString()
-  @IsUrl()
   @IsOptional()
   urlOfWeb!: string;
 

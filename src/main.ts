@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 const logger = new Logger();
@@ -23,6 +23,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+  app.useGlobalPipes(new ValidationPipe({}));
   await app.listen(port, host);
   logger.log(`Server is listening at ${scheme}://${host}:${port}`);
   logger.log(`Docs is exposed at ${scheme}://${host}:${port}/${doc}`);
