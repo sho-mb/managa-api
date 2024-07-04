@@ -17,6 +17,13 @@ export class MangaRepository {
     return this.mangaRepository.find({ relations: ['genres'] });
   }
 
+  async findOneById(id: string): Promise<Manga> {
+    return this.mangaRepository.findOne({
+      where: { id: parseInt(id) },
+      relations: ['genres'],
+    });
+  }
+
   async createNewManga(manga: CreateMangaDto): Promise<Manga> {
     const createManga = this.mangaRepository.create(manga);
     return this.mangaRepository.save(createManga);

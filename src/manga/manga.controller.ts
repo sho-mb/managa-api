@@ -4,6 +4,7 @@ import {
   Get,
   HttpException,
   HttpStatus,
+  Param,
   Post,
 } from '@nestjs/common';
 import { MangaService } from './services/manga.service';
@@ -17,6 +18,11 @@ export class MangaController {
   @Get()
   async findAll(): Promise<Manga[]> {
     return await this.mangaService.findAll();
+  }
+
+  @Get(':id')
+  async findOne(@Param() params: any): Promise<Manga> {
+    return await this.mangaService.findOne(params.id);
   }
 
   @Post()

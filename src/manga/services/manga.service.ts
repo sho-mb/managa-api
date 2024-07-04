@@ -13,6 +13,10 @@ export class MangaService {
     return this.mangaRepository.findAllWithGenres();
   }
 
+  async findOne(id: string): Promise<Manga> {
+    return this.mangaRepository.findOneById(id);
+  }
+
   async create(manga: CreateMangaDto): Promise<Manga> {
     return this.mangaRepository.createNewManga(manga);
   }
