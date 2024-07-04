@@ -19,4 +19,8 @@ export class GenresRepository {
   async getAllGenres(): Promise<Genres[]> {
     return this.genresRepository.find();
   }
+
+  async findOne(genre: string): Promise<Genres | null> {
+    return this.genresRepository.findOneBy({ genre });
+  }
 }

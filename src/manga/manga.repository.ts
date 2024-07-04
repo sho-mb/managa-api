@@ -17,7 +17,7 @@ export class MangaRepository {
     return this.mangaRepository.find({ relations: ['genres'] });
   }
 
-  createNewManga(manga: CreateMangaDto): Promise<Manga> {
+  async createNewManga(manga: CreateMangaDto): Promise<Manga> {
     const createManga = this.mangaRepository.create(manga);
     return this.mangaRepository.save(createManga);
   }

@@ -21,7 +21,7 @@ export class Manga {
   @Column()
   topViewUrl: string;
 
-  @Column()
+  @Column('longtext')
   content: string;
 
   @Column()
