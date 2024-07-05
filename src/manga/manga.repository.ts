@@ -28,4 +28,8 @@ export class MangaRepository {
     const createManga = this.mangaRepository.create(manga);
     return this.mangaRepository.save(createManga);
   }
+
+  async deleteOneById(id: string): Promise<void> {
+    this.mangaRepository.delete(id);
+  }
 }

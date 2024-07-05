@@ -20,4 +20,8 @@ export class MangaService {
   async create(manga: CreateMangaDto): Promise<Manga> {
     return this.mangaRepository.createNewManga(manga);
   }
+
+  async deleteOne(id: string): Promise<void> {
+    this.mangaRepository.deleteOneById(id);
+  }
 }
