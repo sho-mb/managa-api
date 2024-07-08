@@ -7,10 +7,12 @@ import {
   HttpStatus,
   Param,
   Post,
+  Put,
 } from '@nestjs/common';
 import { MangaService } from './services/manga.service';
 import { Manga } from './entity/manga.entity';
 import { CreateMangaDto } from './requests/create-manga.dto';
+import { UpdateMangaDto } from './requests/update-mange.dto';
 
 @Controller('manga')
 export class MangaController {
@@ -32,6 +34,18 @@ export class MangaController {
   ): Promise<void | Error> {
     try {
       await this.mangaService.create(createMangaDto);
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @Put(':id')
+  async updateMange(
+    @Param() params: any,
+    @Body() updateMangaDto: UpdateMangaDto,
+  ): Promise<void | Error> {
+    try {
+      await this.mangaService.update(params.id, updateMangaDto);
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
     }
