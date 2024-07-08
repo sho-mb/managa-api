@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpException,
   HttpStatus,
@@ -31,6 +32,19 @@ export class MangaController {
   ): Promise<void | Error> {
     try {
       await this.mangaService.create(createMangaDto);
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @Delete(':id')
+  async deleteOne(@Param() params: any): Promise<void | Error> {
+    try {
+      const target = await this.mangaService.findOne(params.id);
+      if (!target) {
+        throw new HttpException('Item not exist', HttpStatus.BAD_REQUEST);
+      }
+      await this.mangaService.deleteOne(params.id);
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.BAD_REQUEST);
     }
