@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post } from '@nestjs/common';
 import { ComicsService } from './services/comics.service';
 import { CreateComicsDto } from './requests/create-comics.dto';
 import { MangaService } from 'src/manga/services/manga.service';
@@ -9,11 +9,6 @@ export class ComicsController {
     private readonly comicsService: ComicsService,
     private readonly mangaService: MangaService,
   ) {}
-
-  @Get()
-  async get() {
-    return 'hello';
-  }
 
   @Post(':id')
   async AddNewComic(
