@@ -6,6 +6,7 @@ import { LibsModule } from 'libs/modules/libs.modules';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import applicationConfig from 'config/application';
 import { GenresModule } from './genres/genres.module';
+import { ComicsModule } from './comics/comics.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { GenresModule } from './genres/genres.module';
     LibsModule,
     MangaModule,
     GenresModule,
+    ComicsModule,
   ],
   controllers: [AppController],
   providers: [

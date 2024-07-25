@@ -6,4 +6,8 @@ export default () => ({
   api: {
     doc: process.env.DOC_PATH,
   },
+  storage: {
+    email: process.env.MEGA_EMAIL,
+    password: process.env.MEGA_PASSWORD,
+  },
 });

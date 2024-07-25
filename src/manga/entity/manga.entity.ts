@@ -3,9 +3,11 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Genres } from '../../genres/entity/genres.entity';
+import { Comics } from 'src/comics/entity/comics.entity';
 
 @Entity()
 export class Manga {
@@ -26,6 +28,10 @@ export class Manga {
 
   @Column()
   urlOfWeb: string;
+
+  @OneToMany(() => Comics, (comics) => comics.manga)
+  @JoinTable()
+  comics: Comics[];
 
   @ManyToMany(() => Genres, (genres) => genres.manga)
   @JoinTable()
