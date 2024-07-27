@@ -1,7 +1,8 @@
-import { Body, Controller, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ComicsService } from './services/comics.service';
 import { CreateComicsDto } from './requests/create-comics.dto';
 import { MangaService } from 'src/manga/services/manga.service';
+import { Comics } from './entity/comics.entity';
 
 @Controller('comics')
 export class ComicsController {
@@ -9,6 +10,16 @@ export class ComicsController {
     private readonly comicsService: ComicsService,
     private readonly mangaService: MangaService,
   ) {}
+
+  @Get(':id')
+  async GetAllMnaga(@Param() params: any): Promise<Comics[]> {
+    try {
+      const comics = await this.comicsService.findAllById(params.id);
+      return comics;
+    } catch (e) {
+      throw new Error(`Failed to add comic: ${e.message}`);
+    }
+  }
 
   @Post(':id')
   async AddNewComic(

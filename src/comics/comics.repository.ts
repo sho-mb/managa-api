@@ -23,4 +23,8 @@ export class ComicsRepository {
     comic.manga = manga;
     return this.comicRepository.save(comic);
   }
+
+  async findAllById(id: string): Promise<Comics[]> {
+    return this.comicRepository.find({ where: { id } });
+  }
 }

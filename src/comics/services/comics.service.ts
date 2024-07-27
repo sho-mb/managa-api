@@ -10,6 +10,10 @@ export class ComicsService {
     private readonly comicsRepository: ComicsRepository,
   ) {}
 
+  async findAllById(id: string) {
+    return this.comicsRepository.findAllById(id);
+  }
+
   async create(comic: CreateComicsDto, manga: Manga) {
     return this.comicsRepository.addNewComic(comic, manga);
   }
