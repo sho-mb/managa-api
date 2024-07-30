@@ -7,9 +7,9 @@ export class Comics {
   id: string;
 
   @Column()
-  comicId: string;
+  comicUrl: string;
 
-  @Column()
+  @Column({ unique: true })
   vol: number;
 
   @ManyToOne(() => Manga, (manga) => manga.comics)

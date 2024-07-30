@@ -11,10 +11,10 @@ export class ComicsController {
     private readonly mangaService: MangaService,
   ) {}
 
-  @Get(':id')
-  async GetAllMnaga(@Param() params: any): Promise<Comics[]> {
+  @Get(':vol')
+  async GetOneByVol(@Param() params: any): Promise<Comics> {
     try {
-      const comics = await this.comicsService.findAllById(params.id);
+      const comics = await this.comicsService.getOneByVol(params.vol);
       return comics;
     } catch (e) {
       throw new Error(`Failed to add comic: ${e.message}`);
@@ -30,6 +30,10 @@ export class ComicsController {
       const manga = await this.mangaService.findOne(params.id);
       if (!manga) {
         throw new Error(`Manga with ID ${params.id} not found`);
+      }
+      const comic = await this.comicsService.getOneByVol(createComicsDto.vol);
+      if (comic) {
+        throw new Error(`Comic vol: ${comic.vol} is exist`);
       }
       await this.comicsService.create(createComicsDto, manga);
     } catch (error) {

@@ -16,15 +16,17 @@ export class ComicsRepository {
     createComicsDto: CreateComicsDto,
     manga: Manga,
   ): Promise<Comics> {
-    const { vol, comicId } = createComicsDto;
+    const { vol, comicUrl } = createComicsDto;
     const comic = new Comics();
     comic.vol = vol;
-    comic.comicId = comicId;
+    comic.comicUrl = comicUrl;
     comic.manga = manga;
     return this.comicRepository.save(comic);
   }
 
-  async findAllById(id: string): Promise<Comics[]> {
-    return this.comicRepository.find({ where: { id } });
+  async getOneByVol(vol: number): Promise<Comics> {
+    return this.comicRepository.findOne({
+      where: { vol: vol },
+    });
   }
 }

@@ -20,7 +20,7 @@ export class MangaRepository {
   async findOneById(id: string): Promise<Manga> {
     return this.mangaRepository.findOne({
       where: { id: parseInt(id) },
-      relations: ['genres'],
+      relations: ['genres', 'comics'],
     });
   }
 

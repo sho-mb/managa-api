@@ -3,7 +3,7 @@ import { IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateComicsDto {
   @ApiProperty()
-  comicId: string;
+  comicUrl: string;
 
   @ApiProperty()
   @IsNumber()
